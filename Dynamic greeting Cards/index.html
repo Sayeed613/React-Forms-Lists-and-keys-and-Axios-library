@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Greeting Cards</title>
+  <style>
+    .greeting-card {
+      font-family: 'Courier New', Courier, monospace;
+      border: 2px solid #7AB2B2;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px;
+      background-color: #4D869C;
+      width: 400px;
+      color: #EEF7FF;
+      text-align: center;
+      animation: fadein 1s ease-in-out;
+    }
+
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+  let greeting = {
+    cards: [
+      {
+        id:1,
+        name: "Rahul Sharma",
+        message: "Greetings on your special day!"
+      },
+      {
+        id:2,
+        name: "Priya Patel",
+        message: "Congratulations on your achievements!"
+      },
+      {
+        id:3,
+        name: "Amit Kumar",
+        message: "Wishing you a joyful Christmas!"
+      }
+    ]
+  }
+
+  function GreetingCard({ message, name }) {
+    return (
+      <div className="greeting-card">
+        <h2>{message}</h2>
+        <p>{name}</p>
+      </div>
+    );
+  }
+
+  function App() {
+    return (
+      <div>
+        {greeting.cards.map(card => (
+          <GreetingCard
+            key={card.id}
+            message={card.message}
+            name={card.name}
+          />
+        ))}
+      </div>
+    );
+  }
+
+  ReactDOM.render(<App />, document.getElementById("root"));
+</script>
+</html>
